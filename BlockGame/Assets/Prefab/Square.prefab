@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6435101256070998154}
   - component: {fileID: 7706469429977561029}
-  - component: {fileID: 4709040248925326959}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -84,23 +83,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4709040248925326959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104097846451260755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a25381fd31f784c9a467e32518313c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderer: {fileID: 7706469429977561029}
-  btnRed: {fileID: 8279573491125494969, guid: e24c71ac551cc3149b59907424942413, type: 3}
-  btnGreen: {fileID: 1434190266150875232, guid: 11cad7b7c5e113e4783de021f34ff9ec, type: 3}
-  btnBlue: {fileID: 4464503922645131971, guid: a47f6422b48f2dd479fae62278af2d2a, type: 3}
-  btnOrange: {fileID: 3720509726298688363, guid: 8aec414e6aafb6f4dbaeef45231f8433, type: 3}
-  btnPurple: {fileID: 7364809779886988959, guid: 90b923fd462307d4cb09a029a637f716, type: 3}
-  btnYellow: {fileID: 7098651859525809483, guid: a39de70e3cf74b94799b492970a029e4, type: 3}
-  btnCyan: {fileID: 1544138896635486818, guid: 1409d16093b44b849b37f40076c4e549, type: 3}

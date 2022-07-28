@@ -12,6 +12,41 @@ public class Tiles : MonoBehaviour
     public void Init(int number, Color theColour, Color Red, Color Green, Color Blue, Color Orange, Color Cyan, Color Purple, Color Yellow)
     {
 
+        if (number == 0)
+        {
+
+            renderer.color = Red;
+        }
+        if (number == 1)
+        {
+            renderer.color = Green;
+
+        }
+        if (number == 2)
+        {
+            renderer.color = Blue;
+        }
+        if (number == 3)
+        {
+            renderer.color = Orange;
+        }
+        if (number == 4)
+        {
+            renderer.color = Purple;
+        }
+        if (number == 5)
+        {
+            renderer.color = Yellow;
+        }
+        if (number == 6)
+        {
+            renderer.color = Cyan;
+        }
+
+
+
+
+        /*
         if (theColour == Red)
         {
             
@@ -245,6 +280,10 @@ public class Tiles : MonoBehaviour
                 renderer.color = theColour;
             }
         }
+        */
+
+
+
 
 
         /*

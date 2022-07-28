@@ -14,10 +14,12 @@ public class wtf : MonoBehaviour
     List<(int X, int Y)> friends = new List<(int X, int Y)>();
     public int x = 0;
     public int y = 0;
+    public GameObject gameUI, chooseColorUI;
     List<(int X, int Y)> tempfriends = new List<(int X, int Y)>();
     public Color chosenColour;
+    public int chosenColourCode;
     public Color Red, Green, Blue, Orange, Cyan, Purple, Yellow;
-
+    public GameObject btnRed, btnGreen, btnBlue, btnOrange, btnPurple, btnYellow, btnCyan;
     private int clickCounter;
     public TextMeshProUGUI clickCounterText, timerText;
     public Button btnReplay;
@@ -25,7 +27,7 @@ public class wtf : MonoBehaviour
     float timer;
 
 
-    [SerializeField] private Tiles tilePrefab;
+    [SerializeField] private GameObject tilePrefab;
 
     [SerializeField] private Transform camera;
 
@@ -35,7 +37,11 @@ public class wtf : MonoBehaviour
 
     void Start()
     {
-        btnReplay.onClick.
+        gameUI.SetActive(false);
+        chooseColorUI.SetActive(true);
+
+
+        btnReplay.onClick.AddListener(() => RestartGame());
 
         //btnReplay.gameObject.SetActive(false);
 
@@ -51,27 +57,68 @@ public class wtf : MonoBehaviour
         Cyan = new Color(0.1079f, 0.9150f, 0.9150f, 1);
         
 
-
-        chosenColour = Cyan; startGame();
+        
+        //startGame();
     }
     void startGame()
     {
 
-        
+
+        switch (chosenColourCode)
+        {
+            case 0:
+                btnCyan.SetActive(true);
+                btnCyan.GetComponent<RectTransform>().localPosition = btnRed.GetComponent<RectTransform>().localPosition;
+                btnRed.SetActive(false);
+                break;
+            case 1:
+                btnCyan.SetActive(true);
+                btnCyan.GetComponent<RectTransform>().localPosition = btnGreen.GetComponent<RectTransform>().localPosition;
+                btnGreen.SetActive(false);
+                break;
+            case 2:
+                btnCyan.SetActive(true);
+                btnCyan.GetComponent<RectTransform>().localPosition = btnBlue.GetComponent<RectTransform>().localPosition;
+                btnBlue.SetActive(false);
+                break;
+            case 3:
+                btnCyan.SetActive(true);
+                btnCyan.GetComponent<RectTransform>().localPosition = btnOrange.GetComponent<RectTransform>().localPosition;
+                btnOrange.SetActive(false);
+                break;
+            case 4:
+                btnCyan.SetActive(true);
+                btnCyan.GetComponent<RectTransform>().localPosition = btnPurple.GetComponent<RectTransform>().localPosition;
+                btnPurple.SetActive(false);
+                break;
+            case 5:
+                btnCyan.SetActive(true);
+                btnCyan.GetComponent<RectTransform>().localPosition = btnYellow.GetComponent<RectTransform>().localPosition;
+                btnYellow.SetActive(false);
+                break;
+        }
+
+        gameUI.SetActive(true);
+        chooseColorUI.SetActive(false);
+
+        //create level
 
         arr2d = new int[10, 10]
         {
-            {6,1,2,1,3,0,0,0,0,0},
-            {1,2,1,3,1,0,1,2,1,3 },
-            {2,1,3,1,4,4,4,2,1,3 },
-            {1,3,1,4,1,0,1,4,1,3 },
-            {2,1,3,1,4,0,4,2,1,3 },
-            {2,1,3,1,4,0,1,2,1,3 },
-            {2,1,5,1,4,0,1,5,1,3 },
-            {2,1,3,1,4,0,1,2,1,3 },
-            {2,1,3,1,4,0,1,5,1,3 },
-            {2,1,3,1,4,0,1,2,1,3 }
+            {chosenColourCode,1,2,1,3,0,0,0,0,0},
+                            {1,2,1,3,1,0,1,2,1,3 },
+                            {2,1,3,1,4,4,4,2,1,3 },
+                            {1,3,1,4,1,0,1,4,1,3 },
+                            {2,1,3,1,4,0,4,2,1,3 },
+                            {2,1,3,1,4,0,1,2,1,3 },
+                            {2,1,5,1,4,0,1,5,1,3 },
+                            {2,1,3,1,4,0,1,2,1,3 },
+                            {2,1,3,1,4,0,1,5,1,3 },
+                            {2,1,3,1,4,0,1,2,1,3 }
         };
+
+
+
 
         needsChecking = new bool[10, 10]
          {
@@ -100,13 +147,27 @@ public class wtf : MonoBehaviour
   
     void GenerateGrid()
     {
-
       
 
         for (int x = 0; x < arr2d.GetLength(0); x++)
         {
             for (int y = 0; y < arr2d.GetLength(1); y++)
             {
+
+                if (x + y != 0)
+                {
+                    if (chosenColourCode != 6)
+                    {
+                        if (arr2d[x, y] == chosenColourCode)
+                        {
+                            arr2d[x, y] = 6;
+                        }
+                    }
+                }
+
+
+
+
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(y / divider, -x / divider), transform.rotation);
                 spawnedTile.name = $"Tile{x}{y}";
 
@@ -114,31 +175,38 @@ public class wtf : MonoBehaviour
                 spawnedTile.transform.parent = GameObject.Find("Grid").transform;
                 if (arr2d[x, y] == 0)
                 {
-                    spawnedTile.Init(0, chosenColour, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
+                    spawnedTile.GetComponent<SpriteRenderer>().color = Red;
+                    //spawnedTile.Init(0, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
                 }
                 if (arr2d[x, y] == 1)
                 {
-                    spawnedTile.Init(1, chosenColour, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
+                    spawnedTile.GetComponent<SpriteRenderer>().color = Green;
+                    //spawnedTile.Init(1,Red, Green, Blue, Orange, Cyan, Purple, Yellow);
                 }
                 if (arr2d[x, y] == 2)
                 {
-                    spawnedTile.Init(2, chosenColour, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
+                    spawnedTile.GetComponent<SpriteRenderer>().color = Blue;
+                    //spawnedTile.Init(2, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
                 }
                 if (arr2d[x, y] == 3)
                 {
-                    spawnedTile.Init(3, chosenColour, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
+                    spawnedTile.GetComponent<SpriteRenderer>().color = Orange;
+                    //spawnedTile.Init(3, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
                 }
                 if (arr2d[x, y] == 4)
                 {
-                    spawnedTile.Init(4, chosenColour, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
+                    spawnedTile.GetComponent<SpriteRenderer>().color = Purple;
+                    //spawnedTile.Init(4, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
                 }
                 if (arr2d[x, y] == 5)
                 {
-                    spawnedTile.Init(5, chosenColour, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
+                    spawnedTile.GetComponent<SpriteRenderer>().color = Yellow;
+                    //spawnedTile.Init(5, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
                 }
                 if (arr2d[x, y] == 6)
                 {
-                    spawnedTile.Init(6, chosenColour, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
+                    spawnedTile.GetComponent<SpriteRenderer>().color = Cyan;
+                    //spawnedTile.Init(6, Red, Green, Blue, Orange, Cyan, Purple, Yellow);
                 }
             }
 
@@ -285,39 +353,36 @@ public class wtf : MonoBehaviour
     }
     public void ChoseColourRed()
     {
-        timer = Time.realtimeSinceStartup;
-        Debug.Log(Time.realtimeSinceStartup);
-        chosenColour = Red; startGame();
+        chosenColourCode = 0; chosenColour = Red; startGame();
     }
     public void ChoseColourOrange()
     {
-        chosenColour = Orange; startGame();
+        chosenColourCode = 3; chosenColour = Orange; startGame();
     }
 
     public void ChoseColourGreen()
     {
-        chosenColour = Green; startGame();
+        chosenColourCode = 1; chosenColour = Green; startGame();
     }
 
     public void ChoseColourBlue()
     {
-        chosenColour = Blue; startGame()
-            ;
+        chosenColourCode = 2; chosenColour = Blue; startGame();
     }
 
     public void ChoseColourCyan()
     {
-        chosenColour = Cyan; startGame();
+        chosenColourCode = 6; chosenColour = Cyan; startGame();
     }
 
     public void ChoseColourPurple()
     {
-        chosenColour = Purple; startGame();
+        chosenColourCode = 4; chosenColour = Purple; startGame();
     }
 
     public void ChoseColourYellow()
     {
-        chosenColour = Yellow; startGame();
+        chosenColourCode = 5; chosenColour = Yellow; startGame();
     }
     public void buttonRed()
     {
@@ -357,7 +422,12 @@ public class wtf : MonoBehaviour
             int seconds = (int)timer % 60;
             timerText.text = "Time: " + seconds;
         }
+        else
+        {
+            RestartGame();
+        }
         
+
 
     }
 
