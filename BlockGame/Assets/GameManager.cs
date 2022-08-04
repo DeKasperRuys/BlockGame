@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     public bool[,] copyOfNeedsChecking = new bool[10, 10];
     public void startGame()
     {
-        copyOfLevel = StaticData.level0;
-        copyOfNeedsChecking = StaticData.needsCheckingLevel0;
+        copyOfLevel = StaticData.level0.Clone() as int [,];
+        copyOfNeedsChecking = StaticData.needsCheckingLevel0.Clone() as bool[,];
 
 
         hasStarted = true;
