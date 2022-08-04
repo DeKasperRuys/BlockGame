@@ -28,18 +28,20 @@ public class GameManager : MonoBehaviour
     float timer;
     public bool hasStarted = false;
     public int[,] copyOfLevel = new int[10, 10];
-
+    public bool[,] copyOfNeedsChecking = new bool[10, 10];
     public void startGame()
     {
         copyOfLevel = StaticData.level0;
-        hasStarted = true;
+        copyOfNeedsChecking = StaticData.needsCheckingLevel0;
 
+
+        hasStarted = true;
         CallArray();
         friends.Clear();
         tempfriends.Clear();
         friends.Add((0, 0));
         buildLevel.GenerateGrid(copyOfLevel);
-        CallArray();
+        
     }
 
     public void addFriends(int number)
@@ -78,35 +80,35 @@ public class GameManager : MonoBehaviour
 
 
             // IS RIGHT NEIGHBOUR THE SAME ??
-            if (friends[xCounter].X + 1 < copyOfLevel.GetLength(0) && copyOfLevel[friends[xCounter].X + 1, friends[xCounter].Y] == number && StaticData.needsCheckingLevel0[friends[xCounter].X, friends[xCounter].Y] == true)
+            if (friends[xCounter].X + 1 < copyOfLevel.GetLength(0) && copyOfLevel[friends[xCounter].X + 1, friends[xCounter].Y] == number && copyOfNeedsChecking[friends[xCounter].X, friends[xCounter].Y] == true)
             {
 
                 tempfriends.Add((friends[xCounter].X + 1, friends[xCounter].Y));
-                StaticData.needsCheckingLevel0[friends[xCounter].X + 1, friends[xCounter].Y] = true;
+                copyOfNeedsChecking[friends[xCounter].X + 1, friends[xCounter].Y] = true;
                 checkedX = true;
                 iCHeckedthismanytimes++;
             }
             // IS UNDER NEIGHBOUR THE SAME ??
-            if (friends[xCounter].Y + 1 < copyOfLevel.GetLength(1) && copyOfLevel[friends[xCounter].X, friends[xCounter].Y + 1] == number && StaticData.needsCheckingLevel0[friends[xCounter].X, friends[xCounter].Y] == true)
+            if (friends[xCounter].Y + 1 < copyOfLevel.GetLength(1) && copyOfLevel[friends[xCounter].X, friends[xCounter].Y + 1] == number && copyOfNeedsChecking[friends[xCounter].X, friends[xCounter].Y] == true)
             {
                 //Debug.Log("bottom neighbour of " + friends[xCounter].X + "," + friends[xCounter].Y + " is the same number so adding to friends");
                 tempfriends.Add((friends[xCounter].X, friends[xCounter].Y + 1));
-                StaticData.needsCheckingLevel0[friends[xCounter].X, friends[xCounter].Y + 1] = true;
+                copyOfNeedsChecking[friends[xCounter].X, friends[xCounter].Y + 1] = true;
                 checkedY = true;
                 iCHeckedthismanytimes++;
             }
             // IS LEFT NEIGHBOUR THE SAME ??
-            if (friends[xCounter].X > 0 && copyOfLevel[friends[xCounter].X - 1, friends[xCounter].Y] == number && StaticData.needsCheckingLevel0[friends[xCounter].X, friends[xCounter].Y] == true)
+            if (friends[xCounter].X > 0 && copyOfLevel[friends[xCounter].X - 1, friends[xCounter].Y] == number && copyOfNeedsChecking[friends[xCounter].X, friends[xCounter].Y] == true)
             {
                 tempfriends.Add((friends[xCounter].X - 1, friends[xCounter].Y));
-                StaticData.needsCheckingLevel0[friends[xCounter].X - 1, friends[xCounter].Y] = true;
+                copyOfNeedsChecking[friends[xCounter].X - 1, friends[xCounter].Y] = true;
                 iCHeckedthismanytimes++;
             }
             // IS UP NEIGHBOUR THE SAME ??
-            if (friends[xCounter].Y > 0 && copyOfLevel[friends[xCounter].X, friends[xCounter].Y - 1] == number && StaticData.needsCheckingLevel0[friends[xCounter].X, friends[xCounter].Y] == true)
+            if (friends[xCounter].Y > 0 && copyOfLevel[friends[xCounter].X, friends[xCounter].Y - 1] == number && copyOfNeedsChecking[friends[xCounter].X, friends[xCounter].Y] == true)
             {
                 tempfriends.Add((friends[xCounter].X, friends[xCounter].Y - 1));
-                StaticData.needsCheckingLevel0[friends[xCounter].X, friends[xCounter].Y - 1] = true;
+                copyOfNeedsChecking[friends[xCounter].X, friends[xCounter].Y - 1] = true;
                 iCHeckedthismanytimes++;
             }
             friends.AddRange(tempfriends.Distinct());
@@ -121,7 +123,7 @@ public class GameManager : MonoBehaviour
 
             if (checkedX == true && checkedY == true)
             {
-                StaticData.needsCheckingLevel0[friends[xCounter].X, friends[xCounter].Y] = false;
+                copyOfNeedsChecking[friends[xCounter].X, friends[xCounter].Y] = false;
 
             }
 
@@ -162,16 +164,28 @@ public class GameManager : MonoBehaviour
              "[" + copyOfLevel[9, 0] + "," + copyOfLevel[9, 1] + "," + copyOfLevel[9, 2] + "," + copyOfLevel[9, 3] + "," + copyOfLevel[9, 4] + "," + copyOfLevel[9, 5] + "," + copyOfLevel[9, 6] + "," + copyOfLevel[9, 7] + "," + copyOfLevel[9, 8] + "," + copyOfLevel[9, 9] + "]\n");
 
 
-        Debug.Log("[" + StaticData.needsCheckingLevel0[0, 0] + "," + StaticData.needsCheckingLevel0[0, 1] + "," + StaticData.needsCheckingLevel0[0, 2] + "," + StaticData.needsCheckingLevel0[0, 3] + "," + StaticData.needsCheckingLevel0[0, 4] + "," + StaticData.needsCheckingLevel0[0, 5] + "," + StaticData.needsCheckingLevel0[0, 6] + "," + StaticData.needsCheckingLevel0[0, 7] + "," + StaticData.needsCheckingLevel0[0, 8] + "," + StaticData.needsCheckingLevel0[0, 9] + "]\n" +
-            "[" + StaticData.needsCheckingLevel0[1, 0] + "," + StaticData.needsCheckingLevel0[1, 1] + "," + StaticData.needsCheckingLevel0[1, 2] + "," + StaticData.needsCheckingLevel0[1, 3] + "," + StaticData.needsCheckingLevel0[1, 4] + "," + StaticData.needsCheckingLevel0[1, 5] + "," + StaticData.needsCheckingLevel0[1, 6] + "," + StaticData.needsCheckingLevel0[1, 7] + "," + StaticData.needsCheckingLevel0[1, 8] + "," + StaticData.needsCheckingLevel0[1, 9] + "]\n" +
-            "[" + StaticData.needsCheckingLevel0[2, 0] + "," + StaticData.needsCheckingLevel0[2, 1] + "," + StaticData.needsCheckingLevel0[2, 2] + "," + StaticData.needsCheckingLevel0[2, 3] + "," + StaticData.needsCheckingLevel0[2, 4] + "," + StaticData.needsCheckingLevel0[2, 5] + "," + StaticData.needsCheckingLevel0[2, 6] + "," + StaticData.needsCheckingLevel0[2, 7] + "," + StaticData.needsCheckingLevel0[2, 8] + "," + StaticData.needsCheckingLevel0[2, 9] + "]\n" +
-             "[" + StaticData.needsCheckingLevel0[3, 0] + "," + StaticData.needsCheckingLevel0[3, 1] + "," + StaticData.needsCheckingLevel0[3, 2] + "," + StaticData.needsCheckingLevel0[3, 3] + "," + StaticData.needsCheckingLevel0[3, 4] + "," + StaticData.needsCheckingLevel0[3, 5] + "," + StaticData.needsCheckingLevel0[3, 6] + "," + StaticData.needsCheckingLevel0[3, 7] + "," + StaticData.needsCheckingLevel0[3, 8] + "," + StaticData.needsCheckingLevel0[3, 9] + "]\n" +
-             "[" + StaticData.needsCheckingLevel0[4, 0] + "," + StaticData.needsCheckingLevel0[4, 1] + "," + StaticData.needsCheckingLevel0[4, 2] + "," + StaticData.needsCheckingLevel0[4, 3] + "," + StaticData.needsCheckingLevel0[4, 4] + "," + StaticData.needsCheckingLevel0[4, 5] + "," + StaticData.needsCheckingLevel0[4, 6] + "," + StaticData.needsCheckingLevel0[4, 7] + "," + StaticData.needsCheckingLevel0[4, 8] + "," + StaticData.needsCheckingLevel0[4, 9] + "]\n" +
-             "[" + StaticData.needsCheckingLevel0[5, 0] + "," + StaticData.needsCheckingLevel0[5, 1] + "," + StaticData.needsCheckingLevel0[5, 2] + "," + StaticData.needsCheckingLevel0[5, 3] + "," + StaticData.needsCheckingLevel0[5, 4] + "," + StaticData.needsCheckingLevel0[5, 5] + "," + StaticData.needsCheckingLevel0[5, 6] + "," + StaticData.needsCheckingLevel0[5, 7] + "," + StaticData.needsCheckingLevel0[5, 8] + "," + StaticData.needsCheckingLevel0[5, 9] + "]\n" +
-             "[" + StaticData.needsCheckingLevel0[6, 0] + "," + StaticData.needsCheckingLevel0[6, 1] + "," + StaticData.needsCheckingLevel0[6, 2] + "," + StaticData.needsCheckingLevel0[6, 3] + "," + StaticData.needsCheckingLevel0[6, 4] + "," + StaticData.needsCheckingLevel0[6, 5] + "," + StaticData.needsCheckingLevel0[6, 6] + "," + StaticData.needsCheckingLevel0[6, 7] + "," + StaticData.needsCheckingLevel0[6, 8] + "," + StaticData.needsCheckingLevel0[6, 9] + "]\n" +
-             "[" + StaticData.needsCheckingLevel0[7, 0] + "," + StaticData.needsCheckingLevel0[7, 1] + "," + StaticData.needsCheckingLevel0[7, 2] + "," + StaticData.needsCheckingLevel0[7, 3] + "," + StaticData.needsCheckingLevel0[7, 4] + "," + StaticData.needsCheckingLevel0[7, 5] + "," + StaticData.needsCheckingLevel0[7, 6] + "," + StaticData.needsCheckingLevel0[7, 7] + "," + StaticData.needsCheckingLevel0[7, 8] + "," + StaticData.needsCheckingLevel0[7, 9] + "]\n" +
-             "[" + StaticData.needsCheckingLevel0[8, 0] + "," + StaticData.needsCheckingLevel0[8, 1] + "," + StaticData.needsCheckingLevel0[8, 2] + "," + StaticData.needsCheckingLevel0[8, 3] + "," + StaticData.needsCheckingLevel0[8, 4] + "," + StaticData.needsCheckingLevel0[8, 5] + "," + StaticData.needsCheckingLevel0[8, 6] + "," + StaticData.needsCheckingLevel0[8, 7] + "," + StaticData.needsCheckingLevel0[8, 8] + "," + StaticData.needsCheckingLevel0[8, 9] + "]\n" +
-             "[" + StaticData.needsCheckingLevel0[9, 0] + "," + StaticData.needsCheckingLevel0[9, 1] + "," + StaticData.needsCheckingLevel0[9, 2] + "," + StaticData.needsCheckingLevel0[9, 3] + "," + StaticData.needsCheckingLevel0[9, 4] + "," + StaticData.needsCheckingLevel0[9, 5] + "," + StaticData.needsCheckingLevel0[9, 6] + "," + StaticData.needsCheckingLevel0[9, 7] + "," + StaticData.needsCheckingLevel0[9, 8] + "," + StaticData.needsCheckingLevel0[9, 9] + "]\n");
+        Debug.Log("[" + StaticData.level0[0, 0] + "," + StaticData.level0[0, 1] + "," + StaticData.level0[0, 2] + "," + StaticData.level0[0, 3] + "," + StaticData.level0[0, 4] + "," + StaticData.level0[0, 5] + "," + StaticData.level0[0, 6] + "," + StaticData.level0[0, 7] + "," + StaticData.level0[0, 8] + "," + StaticData.level0[0, 9] + "]\n" +
+           "[" + StaticData.level0[1, 0] + "," + StaticData.level0[1, 1] + "," + StaticData.level0[1, 2] + "," + StaticData.level0[1, 3] + "," + StaticData.level0[1, 4] + "," + StaticData.level0[1, 5] + "," + StaticData.level0[1, 6] + "," + StaticData.level0[1, 7] + "," + StaticData.level0[1, 8] + "," + StaticData.level0[1, 9] + "]\n" +
+           "[" + StaticData.level0[2, 0] + "," + StaticData.level0[2, 1] + "," + StaticData.level0[2, 2] + "," + StaticData.level0[2, 3] + "," + StaticData.level0[2, 4] + "," + StaticData.level0[2, 5] + "," + StaticData.level0[2, 6] + "," + StaticData.level0[2, 7] + "," + StaticData.level0[2, 8] + "," + StaticData.level0[2, 9] + "]\n" +
+            "[" + StaticData.level0[3, 0] + "," + StaticData.level0[3, 1] + "," + StaticData.level0[3, 2] + "," + StaticData.level0[3, 3] + "," + StaticData.level0[3, 4] + "," + StaticData.level0[3, 5] + "," + StaticData.level0[3, 6] + "," + StaticData.level0[3, 7] + "," + StaticData.level0[3, 8] + "," + StaticData.level0[3, 9] + "]\n" +
+            "[" + StaticData.level0[4, 0] + "," + StaticData.level0[4, 1] + "," + StaticData.level0[4, 2] + "," + StaticData.level0[4, 3] + "," + StaticData.level0[4, 4] + "," + StaticData.level0[4, 5] + "," + StaticData.level0[4, 6] + "," + StaticData.level0[4, 7] + "," + StaticData.level0[4, 8] + "," + StaticData.level0[4, 9] + "]\n" +
+            "[" + StaticData.level0[5, 0] + "," + StaticData.level0[5, 1] + "," + StaticData.level0[5, 2] + "," + StaticData.level0[5, 3] + "," + StaticData.level0[5, 4] + "," + StaticData.level0[5, 5] + "," + StaticData.level0[5, 6] + "," + StaticData.level0[5, 7] + "," + StaticData.level0[5, 8] + "," + StaticData.level0[5, 9] + "]\n" +
+            "[" + StaticData.level0[6, 0] + "," + StaticData.level0[6, 1] + "," + StaticData.level0[6, 2] + "," + StaticData.level0[6, 3] + "," + StaticData.level0[6, 4] + "," + StaticData.level0[6, 5] + "," + StaticData.level0[6, 6] + "," + StaticData.level0[6, 7] + "," + StaticData.level0[6, 8] + "," + StaticData.level0[6, 9] + "]\n" +
+            "[" + StaticData.level0[7, 0] + "," + StaticData.level0[7, 1] + "," + StaticData.level0[7, 2] + "," + StaticData.level0[7, 3] + "," + StaticData.level0[7, 4] + "," + StaticData.level0[7, 5] + "," + StaticData.level0[7, 6] + "," + StaticData.level0[7, 7] + "," + StaticData.level0[7, 8] + "," + StaticData.level0[7, 9] + "]\n" +
+            "[" + StaticData.level0[8, 0] + "," + StaticData.level0[8, 1] + "," + StaticData.level0[8, 2] + "," + StaticData.level0[8, 3] + "," + StaticData.level0[8, 4] + "," + StaticData.level0[8, 5] + "," + StaticData.level0[8, 6] + "," + StaticData.level0[8, 7] + "," + StaticData.level0[8, 8] + "," + StaticData.level0[8, 9] + "]\n" +
+            "[" + StaticData.level0[9, 0] + "," + StaticData.level0[9, 1] + "," + StaticData.level0[9, 2] + "," + StaticData.level0[9, 3] + "," + StaticData.level0[9, 4] + "," + StaticData.level0[9, 5] + "," + StaticData.level0[9, 6] + "," + StaticData.level0[9, 7] + "," + StaticData.level0[9, 8] + "," + StaticData.level0[9, 9] + "]\n");
+
+
+        Debug.Log("[" + copyOfNeedsChecking[0, 0] + "," + copyOfNeedsChecking[0, 1] + "," + copyOfNeedsChecking[0, 2] + "," + copyOfNeedsChecking[0, 3] + "," + copyOfNeedsChecking[0, 4] + "," + copyOfNeedsChecking[0, 5] + "," + copyOfNeedsChecking[0, 6] + "," + copyOfNeedsChecking[0, 7] + "," + copyOfNeedsChecking[0, 8] + "," + copyOfNeedsChecking[0, 9] + "]\n" +
+            "[" + copyOfNeedsChecking[1, 0] + "," + copyOfNeedsChecking[1, 1] + "," + copyOfNeedsChecking[1, 2] + "," + copyOfNeedsChecking[1, 3] + "," + copyOfNeedsChecking[1, 4] + "," + copyOfNeedsChecking[1, 5] + "," + copyOfNeedsChecking[1, 6] + "," + copyOfNeedsChecking[1, 7] + "," + copyOfNeedsChecking[1, 8] + "," + copyOfNeedsChecking[1, 9] + "]\n" +
+            "[" + copyOfNeedsChecking[2, 0] + "," + copyOfNeedsChecking[2, 1] + "," + copyOfNeedsChecking[2, 2] + "," + copyOfNeedsChecking[2, 3] + "," + copyOfNeedsChecking[2, 4] + "," + copyOfNeedsChecking[2, 5] + "," + copyOfNeedsChecking[2, 6] + "," + copyOfNeedsChecking[2, 7] + "," + copyOfNeedsChecking[2, 8] + "," + copyOfNeedsChecking[2, 9] + "]\n" +
+             "[" + copyOfNeedsChecking[3, 0] + "," + copyOfNeedsChecking[3, 1] + "," + copyOfNeedsChecking[3, 2] + "," + copyOfNeedsChecking[3, 3] + "," + copyOfNeedsChecking[3, 4] + "," + copyOfNeedsChecking[3, 5] + "," + copyOfNeedsChecking[3, 6] + "," + copyOfNeedsChecking[3, 7] + "," + copyOfNeedsChecking[3, 8] + "," + copyOfNeedsChecking[3, 9] + "]\n" +
+             "[" + copyOfNeedsChecking[4, 0] + "," + copyOfNeedsChecking[4, 1] + "," + copyOfNeedsChecking[4, 2] + "," + copyOfNeedsChecking[4, 3] + "," + copyOfNeedsChecking[4, 4] + "," + copyOfNeedsChecking[4, 5] + "," + copyOfNeedsChecking[4, 6] + "," + copyOfNeedsChecking[4, 7] + "," + copyOfNeedsChecking[4, 8] + "," + copyOfNeedsChecking[4, 9] + "]\n" +
+             "[" + copyOfNeedsChecking[5, 0] + "," + copyOfNeedsChecking[5, 1] + "," + copyOfNeedsChecking[5, 2] + "," + copyOfNeedsChecking[5, 3] + "," + copyOfNeedsChecking[5, 4] + "," + copyOfNeedsChecking[5, 5] + "," + copyOfNeedsChecking[5, 6] + "," + copyOfNeedsChecking[5, 7] + "," + copyOfNeedsChecking[5, 8] + "," + copyOfNeedsChecking[5, 9] + "]\n" +
+             "[" + copyOfNeedsChecking[6, 0] + "," + copyOfNeedsChecking[6, 1] + "," + copyOfNeedsChecking[6, 2] + "," + copyOfNeedsChecking[6, 3] + "," + copyOfNeedsChecking[6, 4] + "," + copyOfNeedsChecking[6, 5] + "," + copyOfNeedsChecking[6, 6] + "," + copyOfNeedsChecking[6, 7] + "," + copyOfNeedsChecking[6, 8] + "," + copyOfNeedsChecking[6, 9] + "]\n" +
+             "[" + copyOfNeedsChecking[7, 0] + "," + copyOfNeedsChecking[7, 1] + "," + copyOfNeedsChecking[7, 2] + "," + copyOfNeedsChecking[7, 3] + "," + copyOfNeedsChecking[7, 4] + "," + copyOfNeedsChecking[7, 5] + "," + copyOfNeedsChecking[7, 6] + "," + copyOfNeedsChecking[7, 7] + "," + copyOfNeedsChecking[7, 8] + "," + copyOfNeedsChecking[7, 9] + "]\n" +
+             "[" + copyOfNeedsChecking[8, 0] + "," + copyOfNeedsChecking[8, 1] + "," + copyOfNeedsChecking[8, 2] + "," + copyOfNeedsChecking[8, 3] + "," + copyOfNeedsChecking[8, 4] + "," + copyOfNeedsChecking[8, 5] + "," + copyOfNeedsChecking[8, 6] + "," + copyOfNeedsChecking[8, 7] + "," + copyOfNeedsChecking[8, 8] + "," + copyOfNeedsChecking[8, 9] + "]\n" +
+             "[" + copyOfNeedsChecking[9, 0] + "," + copyOfNeedsChecking[9, 1] + "," + copyOfNeedsChecking[9, 2] + "," + copyOfNeedsChecking[9, 3] + "," + copyOfNeedsChecking[9, 4] + "," + copyOfNeedsChecking[9, 5] + "," + copyOfNeedsChecking[9, 6] + "," + copyOfNeedsChecking[9, 7] + "," + copyOfNeedsChecking[9, 8] + "," + copyOfNeedsChecking[9, 9] + "]\n");
     }
 
 
