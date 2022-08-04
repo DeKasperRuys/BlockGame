@@ -40,7 +40,7 @@ public class BuildLevel : MonoBehaviour
                     }
                 }
 
-
+                Debug.Log("The chosen colour code in build level is : " + ChooseColour.chosenColourCode);
 
 
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(y / divider, -x / divider), transform.rotation);
