@@ -1025,7 +1025,7 @@ GameObject:
   - component: {fileID: 600464297}
   - component: {fileID: 600464296}
   m_Layer: 0
-  m_Name: EventSystem kweniwadeesismaar#feartoremove
+  m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1572,6 +1572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRestarting: 0
   buildLevel: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &924100831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,6 +2391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRestarting: 0
   buildLevel: {fileID: 1726441781}
+  gameManager: {fileID: 1726441779}
 --- !u!4 &1368924741
 Transform:
   m_ObjectHideFlags: 0
@@ -2720,6 +2722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f358de08aab7f3e459cdd42bd6a22c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1726441779}
 --- !u!1 &1733116372 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3792370519061273150, guid: a47f6422b48f2dd479fae62278af2d2a, type: 3}

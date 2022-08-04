@@ -348,11 +348,8 @@
 "Assets/CheckLevelComplete.cs"
 "Assets/ChooseColour.cs"
 "Assets/GameManager.cs"
-"Assets/Grid.cs"
 "Assets/Replay.cs"
 "Assets/StaticData.cs"
-"Assets/TextMeshProHUI.cs"
-"Assets/Tiles.cs"
 "Assets/UI.cs"
 -langversion:8.0
 

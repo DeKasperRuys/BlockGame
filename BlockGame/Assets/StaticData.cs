@@ -33,10 +33,7 @@ public class StaticData : MonoBehaviour
                             {2,1,3,1,4,0,1,2,1,3 }
         };
 
-    private void Update()
-    {
-        Debug.Log("in staticdata scipt is het : " + ChooseColour.chosenColourCode);
-    }
+    
 
 
     // LEVEL 1 NEIGHBOURS THAT NEED CHECKING

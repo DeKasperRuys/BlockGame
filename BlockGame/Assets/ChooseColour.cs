@@ -11,7 +11,7 @@ public class ChooseColour : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("in choosecolour scipt is het : " + chosenColourCode);
+        
     }
 
     public void ChoseColourRed()
@@ -62,7 +62,6 @@ public class ChooseColour : MonoBehaviour
         chosenColour = StaticData.Yellow;
         gameLogic.startGame();
     }
-
-    
+ 
 
 }
