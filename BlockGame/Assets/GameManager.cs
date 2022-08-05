@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         copyOfLevel = StaticData.level0.Clone() as int [,];
         copyOfNeedsChecking = StaticData.needsCheckingLevel0.Clone() as bool[,];
-
+        copyOfLevel[0, 0] = ChooseColour.chosenColourCode;
 
         hasStarted = true;
         CallArray();
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
 
             //change colours of friends
             GameObject theBlock = GameObject.Find("Tile" + friends[xCounter].X + "" + friends[xCounter].Y);
-            theBlock.GetComponent<SpriteRenderer>().color = ChooseColour.chosenColour;
+            theBlock.GetComponent<Image>().color = ChooseColour.chosenColour;
 
 
 
