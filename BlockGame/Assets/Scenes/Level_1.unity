@@ -1270,8 +1270,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1466,8 +1466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000038146973, y: 520}
-  m_SizeDelta: {x: 277.8138, y: 82.0217}
+  m_AnchoredPosition: {x: 0, y: -405.61}
+  m_SizeDelta: {x: 406.5902, y: 137.2115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837888950
 MonoBehaviour:
@@ -2622,6 +2622,7 @@ MonoBehaviour:
   btnPurple: {fileID: 1528217667}
   btnYellow: {fileID: 59491877}
   btnCyan: {fileID: 1576376218}
+  btnInvadeColourList: {fileID: 1839443250}
   clickCounterText: {fileID: 1073244384}
   timerText: {fileID: 104797001}
   isFinished: 0
@@ -3827,6 +3828,10 @@ PrefabInstance:
     - target: {fileID: 6801591834912171306, guid: 90b923fd462307d4cb09a029a637f716, type: 3}
       propertyPath: m_Name
       value: btnPurple
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364809779886988959, guid: 90b923fd462307d4cb09a029a637f716, type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7364809779886988959, guid: 90b923fd462307d4cb09a029a637f716, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

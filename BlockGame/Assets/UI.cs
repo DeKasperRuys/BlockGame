@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public GameObject btnRed, btnGreen, btnBlue, btnOrange, btnPurple, btnYellow, btnCyan;
+
+    public GameObject btnInvadeColourList;
     public TextMeshProUGUI clickCounterText, timerText;
     public bool isFinished = false;
     public int clickCounter = 0;
@@ -40,14 +42,20 @@ public class UI : MonoBehaviour
             showGame();
             showTimer();
         }
-        else
+        if (isFinished == true)
         {
             showRestartButton();
+            btnInvadeColourList.SetActive(false);
         }
+        
+            
+        
 
         if (replay.isRestarting ==true)
         {
             hideRestartButton();
+            btnInvadeColourList.SetActive(true);
+            
         }
     }
 
@@ -61,8 +69,9 @@ public class UI : MonoBehaviour
     private void showGame()
     {
         //Hide choose colour UI
-        gameUI.SetActive(true);
         chooseColorUI.SetActive(false);
+        gameUI.SetActive(true);
+        
     }
 
     public void showRestartButton()

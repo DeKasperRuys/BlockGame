@@ -15,10 +15,12 @@ public class Replay : MonoBehaviour
         isRestarting = true;
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
-        gameManager.startGame();
-        //buildLevel.GenerateGrid();
+        
+
         isRestarting = false;
-        //btnReplay.gameObject.SetActive(true);
+
+
+        gameManager.startGame();
     }
 
 
