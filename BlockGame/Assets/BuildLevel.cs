@@ -69,7 +69,7 @@ public class BuildLevel : MonoBehaviour
                 spawnedTileTransform.anchorMin = new Vector2(0f, 1f); // setting position, will be on center
                 spawnedTileTransform.anchorMax = new Vector2(0f, 1f); // setting position, will be on center
                 spawnedTileTransform.pivot = new Vector2(0.5f, 0.5f); // setting position, will be on center
-                spawnedTileTransform.anchoredPosition = new Vector2((30*x) + 15, (-30*y) - 45);
+                spawnedTileTransform.anchoredPosition = new Vector2((30 * y) + 15, (-30 * x) - 45);
                 spawnedTileTransform.sizeDelta = new Vector2(30, 30); // custom size
                 Image spawnedTileImage = spawnedTile.AddComponent<Image>();
                 spawnedTileImage.sprite = tileTexture;
