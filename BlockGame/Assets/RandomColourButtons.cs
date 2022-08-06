@@ -29,10 +29,9 @@ public class RandomColourButtons : MonoBehaviour
             child.GetComponentInChildren<TextMeshProUGUI>().text = count.ToString();
 
 
-            //child.GetComponent<Button>().onClick.AddListener(RunThisTask);
+            int tempint = count;
+            child.GetComponent<Button>().onClick.AddListener(() => levelSelector.SelectThisLevel("Level_" + tempint.ToString()));
 
-            child.GetComponent<Button>().onClick.AddListener(delegate { levelSelector.SelectThisLevel("Level_" + count); });
-            Debug.Log("Level_" + count);
             if (randomColorNumber ==0)
             {
                 child.GetComponent<Image>().color = StaticData.Red; 
