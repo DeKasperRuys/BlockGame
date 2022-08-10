@@ -6,21 +6,19 @@ using UnityEngine.UI;
 
 public class Replay : MonoBehaviour
 {
-    [SerializeField] public bool isRestarting = false;
+    [SerializeField] public UI ui;
     //[SerializeField] public Button btnReplay;
     [SerializeField] private BuildLevel buildLevel;
     [SerializeField] private GameManager gameManager;
     public void RestartGame()
     {
-        isRestarting = true;
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
-        
-
-        isRestarting = false;
 
 
-        gameManager.startGame();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
+        SceneManager.LoadScene("game");
+
+
+
     }
 
 

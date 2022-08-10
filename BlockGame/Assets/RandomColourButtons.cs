@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RandomColourButtons : MonoBehaviour
@@ -9,7 +10,6 @@ public class RandomColourButtons : MonoBehaviour
 
     int randomColorNumber;
     int count =0;
-    [SerializeField] public LevelSelector levelSelector;
     //public TextMeshPro TextMeshProObject;
     void TaskWithParameters(string message)
     {
@@ -30,7 +30,14 @@ public class RandomColourButtons : MonoBehaviour
 
 
             int tempint = count;
-            child.GetComponent<Button>().onClick.AddListener(() => levelSelector.SelectThisLevel("Level_" + tempint.ToString()));
+            //child.GetComponent<Button>().onClick.AddListener(() => levelSelector.SelectThisLevel("Level_" + tempint.ToString()));
+            child.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                GameManager.selectedLevel = tempint - 1;
+                SceneManager.LoadScene("game");
+
+            });
+
 
             if (randomColorNumber ==0)
             {

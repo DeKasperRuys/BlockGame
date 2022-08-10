@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticData : MonoBehaviour
+public static class StaticData
 {
 
     // COLOURS fsdafasdfsd
@@ -18,8 +18,73 @@ public class StaticData : MonoBehaviour
 
 
     // LEVEL 1
-    
-        public static int[,] level0 = new int[10, 10]
+
+    public static List<int[,]> levelList = new List<int[,]>
+    {
+    new int[10, 10]
+        {
+            {ChooseColour.chosenColourCode ,1,2,1,3,0,0,0,0,0},
+                            {1,2,1,3,1,0,1,2,1,3 },
+                            {2,1,3,1,4,4,4,2,1,3 },
+                            {1,3,1,4,1,0,1,4,1,3 },
+                            {2,1,3,1,4,0,4,2,1,3 },
+                            {2,1,3,1,4,0,1,2,1,3 },
+                            {2,1,5,1,4,0,1,5,1,3 },
+                            {2,1,3,1,4,0,1,2,1,3 },
+                            {2,1,3,1,4,0,1,5,1,3 },
+                            {2,1,3,1,4,0,1,2,1,3 }
+        },
+    new int[10, 10]
+        {
+            {ChooseColour.chosenColourCode ,0,0,0,0,0,0,0,0,0},
+                            {0,0,0,0,0,0,0,0,0,0 },
+                            {0,0,0,0,0,0,0,0,0,0 },
+                            {0,0,0,0,0,0,0,0,0,0 },
+                            {2,2,2,2,2,2,2,2,2,2 },
+                            {0,0,0,0,0,0,0,0,0,0 },
+                            {0,0,0,0,0,0,0,0,0,0 },
+                            {0,0,0,0,0,0,0,0,0,0 },
+                            {0,0,0,0,0,0,0,0,0,0 },
+                            {3,3,3,3,3,3,3,3,3,3 }
+        }
+    };
+
+
+
+    public static List<bool[,]> levelCheckList = new List<bool[,]>
+    {
+
+    new bool[10, 10]
+        {
+            {true,false,false,false,false,false,false,false,false,false},
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false }
+         },
+    new bool[10, 10]
+        {
+            {true,false,false,false,false,false,false,false,false,false},
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false },
+            {false,false,false,false,false,false,false,false,false,false }
+         }
+     };
+
+    /*
+
+    public static int[,] level0 = new int[10, 10]
         {
             {ChooseColour.chosenColourCode ,1,2,1,3,0,0,0,0,0},
                             {1,2,1,3,1,0,1,2,1,3 },
@@ -66,5 +131,5 @@ public class StaticData : MonoBehaviour
             {false,false,false,false,false,false,false,false,false,false },
             {false,false,false,false,false,false,false,false,false,false }
          };
-   
+   */
 }

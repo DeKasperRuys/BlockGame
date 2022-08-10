@@ -22,8 +22,7 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
-        gameUI.SetActive(false);
-        chooseColorUI.SetActive(true);
+        showChooseColor();
 
 
     }
@@ -41,6 +40,7 @@ public class UI : MonoBehaviour
             hideRestartButton();
             showGame();
             showTimer();
+            btnInvadeColourList.SetActive(true);
         }
         if (isFinished == true)
         {
@@ -50,20 +50,21 @@ public class UI : MonoBehaviour
         
             
         
-
+        /*
         if (replay.isRestarting ==true)
         {
             hideRestartButton();
             btnInvadeColourList.SetActive(true);
             
-        }
+        }*/
     }
 
     private void showTimer()
     {
         timer += Time.deltaTime;
-        int seconds = (int)timer % 60;
-        timerText.text = "Time: " + seconds;
+        float minutes = Mathf.FloorToInt(timer / 60);
+        float seconds = Mathf.FloorToInt(timer % 60);
+        timerText.text = "Time: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private void showGame()
@@ -72,6 +73,12 @@ public class UI : MonoBehaviour
         chooseColorUI.SetActive(false);
         gameUI.SetActive(true);
         
+    }
+
+    public void showChooseColor()
+    {
+        gameUI.SetActive(false);
+        chooseColorUI.SetActive(true);
     }
 
     public void showRestartButton()
