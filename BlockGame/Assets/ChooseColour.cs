@@ -18,20 +18,20 @@ public class ChooseColour : MonoBehaviour
     {
         chosenColourCode = 0;
         chosenColour = StaticData.Red;
-        gameLogic.startGame();
+        gameLogic.startGame(GameManager.selectedLevel);
     }
     public void ChoseColourOrange()
     {
         chosenColourCode = 3; 
         chosenColour = StaticData.Orange; 
-        gameLogic.startGame();
+        gameLogic.startGame(GameManager.selectedLevel);
     }
 
     public void ChoseColourGreen()
     {
         chosenColourCode = 1; 
         chosenColour = StaticData.Green; 
-        gameLogic.startGame();
+        gameLogic.startGame(GameManager.selectedLevel);
     }
 
     public void ChoseColourBlue()
@@ -39,28 +39,28 @@ public class ChooseColour : MonoBehaviour
 
         chosenColourCode = 2;
         chosenColour = StaticData.Blue;
-        gameLogic.startGame();
+        gameLogic.startGame(GameManager.selectedLevel);
     }
 
     public void ChoseColourCyan()
     {
         chosenColourCode = 6;
         chosenColour = StaticData.Cyan;
-        gameLogic.startGame();
+        gameLogic.startGame(GameManager.selectedLevel);
     }
 
     public void ChoseColourPurple()
     {
         chosenColourCode = 4;
         chosenColour = StaticData.Purple;
-        gameLogic.startGame();
+        gameLogic.startGame(GameManager.selectedLevel);
     }
 
     public void ChoseColourYellow()
     {
         chosenColourCode = 5;
         chosenColour = StaticData.Yellow;
-        gameLogic.startGame();
+        gameLogic.startGame(GameManager.selectedLevel);
     }
  
 
