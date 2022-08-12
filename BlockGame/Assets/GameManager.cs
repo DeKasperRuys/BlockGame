@@ -127,25 +127,25 @@ public class GameManager : MonoBehaviour
             switch (PlayerPrefs.GetInt("colorCode"))
             {
                 case 0:
-                    theBlock.GetComponent<Image>().color = Color.red;
+                    theBlock.GetComponent<Image>().color = StaticData.Red;
                     break;
                 case 1:
-                    theBlock.GetComponent<Image>().color = Color.green;
+                    theBlock.GetComponent<Image>().color = StaticData.Green;
                     break;
                 case 2:
-                    theBlock.GetComponent<Image>().color = Color.blue;
+                    theBlock.GetComponent<Image>().color = StaticData.Blue;
                     break;
                 case 3:
-                    theBlock.GetComponent<Image>().color = new Color(1.0f, 0.53f, 0.17f); //orange
+                    theBlock.GetComponent<Image>().color = StaticData.Orange;
                     break;
                 case 4:
-                    theBlock.GetComponent<Image>().color = Color.magenta;
+                    theBlock.GetComponent<Image>().color = StaticData.Purple;
                     break;
                 case 5:
-                    theBlock.GetComponent<Image>().color = Color.yellow;
+                    theBlock.GetComponent<Image>().color = StaticData.Yellow;
                     break;
                 case 6:
-                    theBlock.GetComponent<Image>().color = Color.cyan;
+                    theBlock.GetComponent<Image>().color = StaticData.Cyan;
                     break;
                 default:
                     break;

@@ -31,31 +31,31 @@ public class RandomColourButtons : MonoBehaviour
 
             if (randomColorNumber ==0)
             {
-                child.GetComponent<Image>().color = Color.red; 
+                child.GetComponent<Image>().color = StaticData.Red;
             }
             if (randomColorNumber == 1)
             {
-                child.GetComponent<Image>().color = Color.green; ;
+                child.GetComponent<Image>().color = StaticData.Green;
             }
             if (randomColorNumber == 2)
             {
-                child.GetComponent<Image>().color = Color.blue; 
+                child.GetComponent<Image>().color = StaticData.Blue;
             }
             if (randomColorNumber == 3)
             {
-                child.GetComponent<Image>().color = new Color(1.0f, 0.53f, 0.17f); //orange
+                child.GetComponent<Image>().color = StaticData.Orange;
             }
             if (randomColorNumber == 4)
             {
-                child.GetComponent<Image>().color = Color.magenta; 
+                child.GetComponent<Image>().color = StaticData.Purple;
             }
             if (randomColorNumber == 5)
             {
-                child.GetComponent<Image>().color = Color.yellow; 
+                child.GetComponent<Image>().color = StaticData.Yellow;
             }
             if (randomColorNumber == 6)
             {
-                child.GetComponent<Image>().color = Color.cyan; 
+                child.GetComponent<Image>().color = StaticData.Cyan;
             }
             
             

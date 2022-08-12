@@ -51,31 +51,31 @@ public class BuildLevel : MonoBehaviour
 
                 if (levelToGenerate[x, y] == 0)
                 {
-                    spawnedTileImage.color = Color.red;
+                    spawnedTileImage.color = StaticData.Red;
                 }
                 if (levelToGenerate[x, y] == 1)
                 {
-                    spawnedTileImage.color = Color.green;
+                    spawnedTileImage.color = StaticData.Green;
                 }
                 if (levelToGenerate[x, y] == 2)
                 {
-                    spawnedTileImage.color = Color.blue;
+                    spawnedTileImage.color = StaticData.Blue;
                 }
                 if (levelToGenerate[x, y] == 3)
                 {
-                    spawnedTileImage.color = new Color(1.0f, 0.53f, 0.17f); //orange
+                    spawnedTileImage.color = StaticData.Orange;
                 }
                 if (levelToGenerate[x, y] == 4)
                 {
-                    spawnedTileImage.color = Color.magenta;
+                    spawnedTileImage.color = StaticData.Purple;
                 }
                 if (levelToGenerate[x, y] == 5)
                 {
-                    spawnedTileImage.color = Color.yellow;
+                    spawnedTileImage.color = StaticData.Yellow;
                 }
                 if (levelToGenerate[x, y] == 6)
                 {
-                    spawnedTileImage.color = Color.cyan;
+                    spawnedTileImage.color = StaticData.Cyan;
                 }
             }
 
