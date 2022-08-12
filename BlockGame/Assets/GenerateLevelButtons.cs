@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class RandomColourButtons : MonoBehaviour
+public class GenerateLevelButtons : MonoBehaviour
 {
     int count = 0;
     int randomColorNumber;

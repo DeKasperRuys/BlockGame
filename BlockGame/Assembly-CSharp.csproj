@@ -61,7 +61,7 @@
     <Compile Include="Assets\Replay.cs" />
     <Compile Include="Assets\StaticData.cs" />
     <Compile Include="Assets\menuNavigation.cs" />
-    <Compile Include="Assets\RandomColourButtons.cs" />
+    <Compile Include="Assets\GenerateLevelButtons.cs" />
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\ChooseFillColor.cs" />
     <Compile Include="Assets\CheckLevelComplete.cs" />
