@@ -175,6 +175,10 @@ public class GameManager : MonoBehaviour
 
         if (checkLevelComplete.Checker(copyOfLevel, number) == true)
         {
+
+            Debug.Log("level finished");
+            PlayerPrefs.SetInt("levelReached", PlayerPrefs.GetInt("levelReached") + 1);
+            Debug.Log("level finished. levelreached is on " + PlayerPrefs.GetInt("levelReached"));
             int cLevel = PlayerPrefs.GetInt("level");
             PlayerPrefs.SetInt("level", cLevel + 1);
             ui.isFinished = true;

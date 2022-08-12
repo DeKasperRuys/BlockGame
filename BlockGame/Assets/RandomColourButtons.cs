@@ -9,28 +9,49 @@ public class RandomColourButtons : MonoBehaviour
 {
     int count = 0;
     int randomColorNumber;
-    [SerializeField] private int buttonAmount = 2;
+    private int levelReached;
+    private int buttonAmount = 1;
     [SerializeField] public GameObject buttonPrefab;
     [SerializeField] public Transform buttonContainer;
+    
 
+   
+    
     void Start()
     {
-        
+
+        levelReached = PlayerPrefs.GetInt("levelReached");
+
+        buttonAmount = StaticData.levelList.Count;
+
+        if (levelReached < 1) //First time played = 0 && I dont want to set to 1 when I have a higher reachedLevel
+        {
+            PlayerPrefs.SetInt("levelReached", 1);
+            levelReached = PlayerPrefs.GetInt("levelReached");
+        }
+
+
         for (int i = 1; i < buttonAmount+1; i++)
         {
             int tempint = i - 1;
             randomColorNumber = Random.Range(0, 7);
             GameObject newButton = Instantiate(buttonPrefab) as GameObject;
             newButton.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString();
+            
             newButton.GetComponent<Button>().onClick.AddListener(() =>
             {
 
                 PlayerPrefs.SetInt("level", tempint);
-                Debug.Log("level"+i);
                 SceneManager.LoadScene("game");
 
             });
             newButton.transform.SetParent(buttonContainer);
+
+
+            if (i > levelReached)
+            {
+                newButton.GetComponent<Button>().interactable = false;
+            }
 
 
             if (randomColorNumber == 0)
@@ -63,59 +84,8 @@ public class RandomColourButtons : MonoBehaviour
             }
         }
 
+        Debug.Log("levelreached is set on " + PlayerPrefs.GetInt("levelReached"));
 
-
-        /*
-        foreach (Transform child in transform)
-        {
-            count++;
-            randomColorNumber = Random.Range(0, 6);
-
-            //Set button text to the correct level
-            child.GetComponentInChildren<TextMeshProUGUI>().text = count.ToString();
-
-            int tempint = count;
-
-            child.GetComponent<Button>().onClick.AddListener(() =>
-            {
-
-                PlayerPrefs.SetInt("level", tempint - 1);
-                SceneManager.LoadScene("game");
-
-            });
-
-
-            if (randomColorNumber ==0)
-            {
-                child.GetComponent<Image>().color = StaticData.Red;
-            }
-            if (randomColorNumber == 1)
-            {
-                child.GetComponent<Image>().color = StaticData.Green;
-            }
-            if (randomColorNumber == 2)
-            {
-                child.GetComponent<Image>().color = StaticData.Blue;
-            }
-            if (randomColorNumber == 3)
-            {
-                child.GetComponent<Image>().color = StaticData.Orange;
-            }
-            if (randomColorNumber == 4)
-            {
-                child.GetComponent<Image>().color = StaticData.Purple;
-            }
-            if (randomColorNumber == 5)
-            {
-                child.GetComponent<Image>().color = StaticData.Yellow;
-            }
-            if (randomColorNumber == 6)
-            {
-                child.GetComponent<Image>().color = StaticData.Cyan;
-            }
-            
-            
-        }*/
 
 
     }

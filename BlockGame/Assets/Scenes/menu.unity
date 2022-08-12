@@ -1717,7 +1717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &925684681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1829,7 +1829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1117411230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2493,7 +2493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60d0cee0b46f5c4c912b3f60377684d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonAmount: 100
   buttonPrefab: {fileID: 7807310925167976618, guid: 51fbaeff90b7f2f408569b2b0b0d3f93, type: 3}
   buttonContainer: {fileID: 1366718864}
 --- !u!1 &1446592665
