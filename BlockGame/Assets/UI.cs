@@ -13,50 +13,29 @@ public class UI : MonoBehaviour
     public bool isFinished = false;
     public int clickCounter = 0;
     public float timer = 0.0f;
-    public GameObject gameUI, chooseColorUI;
+    public GameObject gameUI;
     [SerializeField] public Button btnReplay;
-    [SerializeField] Replay replay;
     [SerializeField] GameManager gameLogic;
 
     private bool hasStarted => gameLogic.hasStarted == true;
-
-    private void Start()
-    {
-        showChooseColor();
-
-
-    }
 
     private void Update()
     {
         clickCounterText.text = "Turns: " + clickCounter.ToString();
 
-    
-
-
         if (isFinished == false && hasStarted)
         {
             positionColouredPlayButtons();
-            hideRestartButton();
-            showGame();
+            btnReplay.gameObject.SetActive(false);
             showTimer();
             btnInvadeColourList.SetActive(true);
         }
         if (isFinished == true)
         {
-            showRestartButton();
+            btnReplay.gameObject.SetActive(true);
             btnInvadeColourList.SetActive(false);
         }
         
-            
-        
-        /*
-        if (replay.isRestarting ==true)
-        {
-            hideRestartButton();
-            btnInvadeColourList.SetActive(true);
-            
-        }*/
     }
 
     private void showTimer()
@@ -67,33 +46,9 @@ public class UI : MonoBehaviour
         timerText.text = "Time: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    private void showGame()
-    {
-        //Hide choose colour UI
-        chooseColorUI.SetActive(false);
-        gameUI.SetActive(true);
-        
-    }
-
-    public void showChooseColor()
-    {
-        gameUI.SetActive(false);
-        chooseColorUI.SetActive(true);
-    }
-
-    public void showRestartButton()
-    {
-        btnReplay.gameObject.SetActive(true);
-    }
-
-    public void hideRestartButton()
-    {
-        btnReplay.gameObject.SetActive(false);
-    }
-
     public void positionColouredPlayButtons()
     {
-        switch (ChooseColour.chosenColourCode)
+        switch (PlayerPrefs.GetInt("colorCode"))
         {
             case 0:
                 btnCyan.SetActive(true);
