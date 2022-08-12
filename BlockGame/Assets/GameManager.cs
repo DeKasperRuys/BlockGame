@@ -9,12 +9,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //int[,] StaticData.levelList[0];
-    
-
     public int x = 0;
     public int y = 0;
-    public static int selectedLevel;
 
     List<(int X, int Y)> friends = new List<(int X, int Y)>();
     List<(int X, int Y)> tempfriends = new List<(int X, int Y)>();
@@ -27,17 +23,30 @@ public class GameManager : MonoBehaviour
     public bool hasStarted = false;
     public int[,] copyOfLevel = new int[10, 10];
     public bool[,] copyOfNeedsChecking = new bool[10, 10];
+
+    private void Start()
+    {
+        if (!PlayerPrefs.HasKey("level"))
+        {
+            PlayerPrefs.SetInt("level", 0);
+        }
+        if (!PlayerPrefs.HasKey("colorCode"))
+        {
+            PlayerPrefs.SetInt("colorCode", 0);
+        }
+        startGame(PlayerPrefs.GetInt("level"));
+    }
     public void startGame(int level)
     {
-        copyOfLevel = StaticData.levelList[level];
-        copyOfNeedsChecking = StaticData.levelCheckList[level];
-        copyOfLevel[0, 0] = ChooseColour.chosenColourCode;
+        copyOfLevel = (int[,])StaticData.levelList[level].Clone();
+        copyOfNeedsChecking = (bool[,])StaticData.levelCheckList[level].Clone();
+        copyOfLevel[0, 0] = PlayerPrefs.GetInt("colorCode");
         hasStarted = true;
         CallArray();
         friends.Clear();
         tempfriends.Clear();
         friends.Add((0, 0));
-        buildLevel.GenerateGrid(StaticData.levelList[level]);
+        buildLevel.GenerateGrid(copyOfLevel);
         
     }
 
@@ -114,7 +123,34 @@ public class GameManager : MonoBehaviour
 
             //change colours of friends
             GameObject theBlock = GameObject.Find("Tile" + friends[xCounter].X + "" + friends[xCounter].Y);
-            theBlock.GetComponent<Image>().color = ChooseColour.chosenColour;
+
+            switch (PlayerPrefs.GetInt("colorCode"))
+            {
+                case 0:
+                    theBlock.GetComponent<Image>().color = Color.red;
+                    break;
+                case 1:
+                    theBlock.GetComponent<Image>().color = Color.green;
+                    break;
+                case 2:
+                    theBlock.GetComponent<Image>().color = Color.blue;
+                    break;
+                case 3:
+                    theBlock.GetComponent<Image>().color = new Color(1.0f, 0.53f, 0.17f); //orange
+                    break;
+                case 4:
+                    theBlock.GetComponent<Image>().color = Color.magenta;
+                    break;
+                case 5:
+                    theBlock.GetComponent<Image>().color = Color.yellow;
+                    break;
+                case 6:
+                    theBlock.GetComponent<Image>().color = Color.cyan;
+                    break;
+                default:
+                    break;
+            }
+            //theBlock.GetComponent<Image>().color = ChooseColour.chosenColour;
 
 
 
@@ -139,6 +175,8 @@ public class GameManager : MonoBehaviour
 
         if (checkLevelComplete.Checker(copyOfLevel, number) == true)
         {
+            int cLevel = PlayerPrefs.GetInt("level");
+            PlayerPrefs.SetInt("level", cLevel + 1);
             ui.isFinished = true;
         }
 
